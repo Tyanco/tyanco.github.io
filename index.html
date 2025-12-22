@@ -3,29 +3,696 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tyanco</title>
+    <title>Tori Yanco | Climate Risk & Adaptation Finance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            max-width: 700px;
-            margin: 60px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            color: #333;
+        :root {
+            --ocean-deep: #0A4B5E;
+            --ocean-mid: #127A8C;
+            --sea-foam: #6BB6C4;
+            --earth-green: #2D5940;
+            --sage: #5F8670;
+            --mint: #A8D5BA;
+            --ice-white: #F8FAFB;
+            --cloud-gray: #E8EEEF;
+            --text-dark: #1A3740;
+            --text-light: #496D77;
         }
-        h1 { margin-bottom: 10px; }
-        a { color: #0366d6; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Pro', serif;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--ice-white) 0%, var(--cloud-gray) 100%);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Decorative background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 70%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(107, 182, 196, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%;
+            left: -5%;
+            width: 50%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(45, 89, 64, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 250, 251, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(10, 75, 94, 0.1);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--ocean-deep);
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ocean-mid);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--ocean-deep);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--ocean-deep);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-text h1 strong {
+            font-weight: 600;
+            color: var(--earth-green);
+        }
+        
+        .hero-text .subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            color: var(--ocean-mid);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        
+        .hero-image {
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+        
+        .hero-image .placeholder {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--sea-foam) 0%, var(--mint) 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 20px 60px rgba(10, 75, 94, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image .placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Section styling */
+        section {
+            padding: 6rem 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--ocean-deep);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--ocean-mid), var(--sage));
+        }
+        
+        .section-intro {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            margin-top: 2rem;
+            max-width: 800px;
+        }
+        
+        /* Research Section */
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .research-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 2px;
+            border-left: 3px solid var(--ocean-mid);
+            box-shadow: 0 4px 20px rgba(10, 75, 94, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(10, 75, 94, 0.15);
+            border-left-color: var(--earth-green);
+        }
+        
+        .research-card h3 {
+            color: var(--ocean-deep);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .research-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+        
+        /* Publications Section */
+        .publication-list {
+            margin-top: 3rem;
+        }
+        
+        .publication-item {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 2px;
+            border-left: 3px solid var(--sage);
+            box-shadow: 0 2px 15px rgba(10, 75, 94, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .publication-item:hover {
+            box-shadow: 0 4px 25px rgba(10, 75, 94, 0.12);
+            transform: translateX(5px);
+        }
+        
+        .publication-item .title {
+            font-size: 1.2rem;
+            color: var(--ocean-deep);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-item .authors {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-item .journal {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--ocean-mid);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .publication-item .links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .publication-item .links a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ocean-mid);
+            text-decoration: none;
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--ocean-mid);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .publication-item .links a:hover {
+            background: var(--ocean-mid);
+            color: white;
+        }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+        
+        .contact-item .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--ocean-mid), var(--sage));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-item .details {
+            padding-top: 0.5rem;
+        }
+        
+        .contact-item .label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ocean-mid);
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-item .value {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+        
+        .contact-item a {
+            color: var(--ocean-mid);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item a:hover {
+            color: var(--earth-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 1px solid var(--cloud-gray);
+            border-radius: 2px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(10, 75, 94, 0.05);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(10, 75, 94, 0.12);
+            border-color: var(--ocean-mid);
+        }
+        
+        /* CV Download Button */
+        .cv-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-mid));
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(10, 75, 94, 0.2);
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+        
+        .cv-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(10, 75, 94, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--cloud-gray);
+            padding: 3rem 0;
+            margin-top: 6rem;
+        }
+        
+        footer .container {
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            section h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection color */
+        ::selection {
+            background: var(--sea-foam);
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to my website</h1>
-    <p>This is my personal site. More content coming soon!</p>
-    
-    <h2>About Me</h2>
-    <p>Add a brief description about yourself here.</p>
-    
-    <h2>Contact</h2>
-    <p><a href="https://github.com/Tyanco">GitHub</a></p>
+    <nav>
+        <div class="container">
+            <div class="logo">TORI.YANCO</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Dr. <strong>[Your Name]</strong></h1>
+                    <div class="subtitle">CLIMATE, NATURE, & FINANCIAL SYSTEM RISK</div>
+                    <p></p>
+                    <a href="#" class="cv-button">
+                        <span>📄</span>
+                        Download CV
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <div class="placeholder">
+                        [Your professional photo here]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p class="section-intro">
+                I am a climate science researcher specializing in [your specific area of focus]. My work focuses on understanding 
+                [brief description of your research interests]. Currently, I am a PhD candidate at [Your University], 
+                where I investigate [specific research topic]. My research combines [methods/approaches] to address critical 
+                questions about [research impact].
+            </p>
+            <p class="section-intro">
+                Before my doctoral studies, I completed my [degree] at [institution], where I developed a passion for 
+                [research area]. My work has been published in leading journals and presented at international conferences.
+            </p>
+        </div>
+    </section>
+
+    <section id="research">
+        <div class="container">
+            <h2>Research Areas</h2>
+            <div class="research-areas">
+                <div class="research-card">
+                    <h3>Climate & Catastrophe Risk</h3>
+                </div>
+                <div class="research-card">
+                    <h3>Nature-Based Solutions</h3>
+                </div>
+                <div class="research-card">
+                    <h3>Adaptation Finance</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <h2>Selected Publications</h2>
+            <div class="publication-list">
+                <div class="publication-item">
+                    <div class="title">Title of Your First Publication</div>
+                    <div class="authors"><strong>Your Name</strong>, Co-Author A., Co-Author B.</div>
+                    <div class="journal">Journal Name, Volume(Issue), Pages, Year</div>
+                    <div class="links">
+                        <a href="#">PDF</a>
+                        <a href="#">DOI</a>
+                        <a href="#">Code</a>
+                    </div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="title">Title of Your Second Publication</div>
+                    <div class="authors">Co-Author A., <strong>Your Name</strong>, Co-Author C.</div>
+                    <div class="journal">Journal Name, Volume(Issue), Pages, Year</div>
+                    <div class="links">
+                        <a href="#">PDF</a>
+                        <a href="#">DOI</a>
+                    </div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="title">Title of Your Third Publication</div>
+                    <div class="authors"><strong>Your Name</strong>, Co-Author D.</div>
+                    <div class="journal">Journal Name, Volume(Issue), Pages, Year</div>
+                    <div class="links">
+                        <a href="#">PDF</a>
+                        <a href="#">DOI</a>
+                        <a href="#">Supplementary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon">✉️</div>
+                        <div class="details">
+                            <div class="label">EMAIL</div>
+                            <div class="value">
+                                <a href="mailto:your.email@university.edu">your.email@university.edu</a>
+                            </div>
+                        </div>
+                    </div>
+                <div>
+                    <h3 style="color: var(--ocean-deep); margin-bottom: 1.5rem; font-size: 1.3rem;">Academic Profiles</h3>
+                    <div class="social-links">
+                        <a href="#">📚 Google Scholar</a>
+                        <a href="#">🔬 ORCID</a>
+                        <a href="#">🐙 GitHub</a>
+                        <a href="#">💼 LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Tori Yanco. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
